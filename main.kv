@@ -1,0 +1,30 @@
+<Page>:
+    width: self.texture.width if self.texture is not None else 400
+    height: min(self.width / self.texture.width * self.texture.height, self.texture.height) if self.texture is not None else 80
+    size_hint_y: None
+    canvas.before:
+        Color:
+            rgb: 0, 1, 0
+        Line:
+            points: self.pos[0], self.pos[1], self.pos[0] + self.size[0], self.pos[1]
+        Line:
+            points: self.pos[0], self.pos[1] + self.size[1], self.pos[0] + self.size[0], self.pos[1] + self.size[1]
+
+
+FloatLayout:
+
+    ScrollView:
+        id: scroller
+        size_hint: 1, 1
+        pos_hint: { 'x': 0, 'y': 0 }
+        scrolltype: 'bars'
+
+        GridLayout:
+            id: pages_grid
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            width: root.width
+            pos: 0, 0
+            padding: 10, 10, 10, 10
+            spacing: 0, 0
